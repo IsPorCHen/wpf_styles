@@ -15,7 +15,7 @@
 
         <StackPanel Grid.Row="0">
             <TextBlock Text="Информация о пациенте" Style="{StaticResource SubHeaderTextBlock}"/>
-            <WrapPanel Style="{StaticResource VerticalWrapPanel}">
+            <StackPanel>
                 <TextBlock Text="Фамилия:"/>
                 <TextBlock Text="{Binding CurrentPatient.LastName}"/>
                 <TextBlock Text="Имя:"/>
@@ -26,7 +26,7 @@
                 <TextBlock Text="{Binding CurrentPatient.Birthday}"/>
                 <TextBlock Text="Телефон:"/>
                 <TextBlock Text="{Binding CurrentPatient.PhoneNumber}"/>
-            </WrapPanel>
+            </StackPanel>
         </StackPanel>
 
         <Grid Grid.Row="1">
@@ -35,17 +35,17 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Style="{StaticResource StackPanelMarginRight}">
+            <StackPanel Grid.Column="0">
                 <TextBlock Text="Прием пациента" Style="{StaticResource SubHeaderTextBlock}"/>
-                <WrapPanel Style="{StaticResource VerticalWrapPanel}">
+                <StackPanel>
                     <Label Content="Дата приема"/>
-                    <DatePicker Style="{StaticResource DatePicker200}" SelectedDate="{Binding AppointmentDate, Mode=TwoWay}"/>
+                    <TextBox Text="{Binding AppointmentDate, Mode=TwoWay}"/>
                     <Label Content="Диагноз"/>
-                    <TextBox Style="{StaticResource MultilineTextBox40}" Text="{Binding DiagnosisText, Mode=TwoWay}"/>
+                    <TextBox Text="{Binding DiagnosisText, Mode=TwoWay}"/>
                     <Label Content="Рекомендации"/>
-                    <TextBox Style="{StaticResource MultilineTextBox60}" Text="{Binding RecommendationsText, Mode=TwoWay}"/>
-                    <Button Click="SaveAppointmentButton_Click" Content="Сохранить прием" Style="{StaticResource Button180}"/>
-                </WrapPanel>
+                    <TextBox Text="{Binding RecommendationsText, Mode=TwoWay}"/>
+                    <Button Click="SaveAppointmentButton_Click" Content="Сохранить прием" Style="{StaticResource AddButton}"/>
+                </StackPanel>
             </StackPanel>
 
             <StackPanel Grid.Column="1">
@@ -54,17 +54,17 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <StackPanel Style="{StaticResource HorizontalStackPanel}">
+                                <StackPanel>
                                     <TextBlock Text="Дата: "/>
                                     <TextBlock Text="{Binding Date}"/>
                                 </StackPanel>
-                                <StackPanel Style="{StaticResource HorizontalStackPanel}">
+                                <StackPanel>
                                     <TextBlock Text="Диагноз: "/>
                                     <TextBlock Text="{Binding Diagnosis}"/>
                                 </StackPanel>
-                                <StackPanel Style="{StaticResource HorizontalStackPanel}">
+                                <StackPanel>
                                     <TextBlock Text="Рекомендации: "/>
-                                    <TextBlock Text="{Binding Recommendations}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding Recommendations}"/>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
@@ -74,7 +74,7 @@
         </Grid>
 
         <StackPanel Grid.Row="2" Style="{StaticResource HorizontalStackPanel}">
-            <Button Click="BackButton_Click" Content="Назад" Style="{StaticResource Button100}"/>
+            <Button Click="BackButton_Click" Content="Назад"/>
         </StackPanel>
     </Grid>
 </Page>

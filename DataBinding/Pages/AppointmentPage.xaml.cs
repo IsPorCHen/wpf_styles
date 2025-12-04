@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace DataBinding.Pages
 {
@@ -15,7 +16,7 @@ namespace DataBinding.Pages
         private ObservableCollection<Patient> _patients;
         private string _diagnosisText = "";
         private string _recommendationsText = "";
-        private System.DateTime? _appointmentDate;
+        private string _appointmentDate;
 
         public Patient CurrentPatient => _currentPatient;
         public Doctor CurrentDoctor => _currentDoctor;
@@ -31,11 +32,27 @@ namespace DataBinding.Pages
             get => _recommendationsText;
             set { _recommendationsText = value; OnPropertyChanged(nameof(RecommendationsText)); }
         }
-
-        public System.DateTime? AppointmentDate
+        public string AppointmentDate
         {
             get => _appointmentDate;
-            set { _appointmentDate = value; OnPropertyChanged(nameof(AppointmentDate)); }
+            set
+            {
+                _appointmentDate = value;
+                OnPropertyChanged(nameof(AppointmentDate));
+            }
+        }
+
+        public DateTime? AppointmentDateTime
+        {
+            get
+            {
+                if (DateTime.TryParseExact(_appointmentDate, "dd.MM.yyyy",
+                    CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime result))
+                {
+                    return result;
+                }
+                return null;
+            }
         }
 
         public AppointmentPage(Patient patient, Doctor doctor, ObservableCollection<Patient> patients)
@@ -44,23 +61,30 @@ namespace DataBinding.Pages
             _currentPatient = patient;
             _currentDoctor = doctor;
             _patients = patients;
-            AppointmentDate = System.DateTime.Now;
+
+            AppointmentDate = DateTime.Now.ToString("dd.MM.yyyy");
+
             DataContext = this;
         }
 
         private void SaveAppointmentButton_Click(object sender, RoutedEventArgs e)
         {
-
             if (string.IsNullOrWhiteSpace(DiagnosisText))
             {
                 MessageBox.Show("Заполните диагноз!");
                 return;
             }
 
+            if (!DateTime.TryParseExact(AppointmentDate, "dd.MM.yyyy",
+                CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+            {
+                MessageBox.Show("Некорректный формат даты! Используйте формат ДД.ММ.ГГГГ");
+                return;
+            }
 
             var newAppointment = new Appointment
             {
-                Date = AppointmentDate?.ToString("dd.MM.yyyy") ?? System.DateTime.Now.ToString("dd.MM.yyyy"),
+                Date = AppointmentDate,
                 DoctorId = CurrentDoctor.Id,
                 Diagnosis = DiagnosisText,
                 Recommendations = RecommendationsText
@@ -79,6 +103,7 @@ namespace DataBinding.Pages
 
             DiagnosisText = "";
             RecommendationsText = "";
+            AppointmentDate = DateTime.Now.ToString("dd.MM.yyyy");
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

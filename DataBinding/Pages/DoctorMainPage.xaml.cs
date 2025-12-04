@@ -75,6 +75,47 @@ namespace DataBinding.Pages
             NavigationService.Navigate(new LoginPage());
         }
 
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedPatient == null)
+            {
+                MessageBox.Show("Пользователь не выбран");
+                return;
+            }
+
+            bool confirm = MessageBox.Show(
+                "Вы действительно хотите удалить запись?",
+                "Подтверждение удаления",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+                ) == MessageBoxResult.Yes;
+
+            if (confirm)
+            {
+                string fileName = $"P_{SelectedPatient.Id}.json";
+
+                if (File.Exists(fileName))
+                {
+                    try
+                    {
+                        File.Delete(fileName);
+                        Patients.Remove(SelectedPatient);
+
+                        MessageBox.Show("Пациент успешно удален!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Ошибка при удалении файла: {ex.Message}");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"Файл пациента не найден: {fileName}");
+                    Patients.Remove(SelectedPatient);
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {

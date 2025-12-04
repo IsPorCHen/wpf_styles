@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace DataBinding.Pages
 {
@@ -12,27 +13,37 @@ namespace DataBinding.Pages
     {
         private Patient _currentPatient;
         private ObservableCollection<Patient> _patients;
-        private System.DateTime? _birthDate;
+        private string _birthday;
 
         public Patient CurrentPatient => _currentPatient;
 
-        public System.DateTime? BirthDate
+        public string Birthday
         {
-            get => _birthDate;
-            set { _birthDate = value; OnPropertyChanged(nameof(BirthDate)); }
+            get => _birthday;
+            set
+            {
+                _birthday = value;
+                OnPropertyChanged(nameof(Birthday));
+
+                if (DateTime.TryParseExact(value, "dd.MM.yyyy",
+                    CultureInfo.InvariantCulture,
+                    DateTimeStyles.None, out DateTime parsedDate))
+                {
+                    BirthDate = parsedDate;
+                }
+                else
+                {
+                    BirthDate = null;
+                }
+            }
         }
+        public DateTime? BirthDate { get; set; }
 
         public EditPatientPage(Patient patient, ObservableCollection<Patient> patients)
         {
             _currentPatient = patient;
             _patients = patients;
-
-            if (System.DateTime.TryParseExact(patient.Birthday, "dd.MM.yyyy",
-                System.Globalization.CultureInfo.InvariantCulture,
-                System.Globalization.DateTimeStyles.None, out System.DateTime birthDate))
-            {
-                BirthDate = birthDate;
-            }
+            _birthday = patient.Birthday;
 
             InitializeComponent();
             DataContext = this;
@@ -48,19 +59,19 @@ namespace DataBinding.Pages
                 return;
             }
 
+            _currentPatient.Birthday = Birthday;
+
             if (BirthDate.HasValue)
             {
                 _currentPatient.Birthday = BirthDate.Value.ToString("dd.MM.yyyy");
             }
 
             SavePatientToJson(_currentPatient);
-
             var index = _patients.IndexOf(_currentPatient);
             if (index >= 0)
             {
                 _patients[index] = _currentPatient;
             }
-
             MessageBox.Show("Информация о пациенте обновлена!");
             NavigationService.GoBack();
         }

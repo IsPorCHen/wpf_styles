@@ -22,14 +22,13 @@ namespace DataBinding.Pages
             if (string.IsNullOrWhiteSpace(LastNameTextBox.Text) ||
                 string.IsNullOrWhiteSpace(NameTextBox.Text) ||
                 string.IsNullOrWhiteSpace(MiddleNameTextBox.Text) ||
-                !BirthDatePicker.SelectedDate.HasValue)
+                string.IsNullOrWhiteSpace(BirthDatePicker.Text))
             {
                 MessageBox.Show("Заполните все обязательные поля!");
                 return;
             }
 
-            if (IsPatientExists(LastNameTextBox.Text, NameTextBox.Text, MiddleNameTextBox.Text,
-                BirthDatePicker.SelectedDate.Value.ToString("dd.MM.yyyy")))
+            if (IsPatientExists(LastNameTextBox.Text, NameTextBox.Text, MiddleNameTextBox.Text, BirthDatePicker.Text))
             {
                 MessageBox.Show("Пациент с такими данными уже существует!");
                 return;
@@ -51,7 +50,7 @@ namespace DataBinding.Pages
                 LastName = LastNameTextBox.Text,
                 Name = NameTextBox.Text,
                 MiddleName = MiddleNameTextBox.Text,
-                Birthday = BirthDatePicker.SelectedDate.Value.ToString("dd.MM.yyyy"),
+                Birthday = BirthDatePicker.Text,
                 PhoneNumber = PhoneTextBox.Text,
                 AppointmentStories = new ObservableCollection<Appointment>()
             };

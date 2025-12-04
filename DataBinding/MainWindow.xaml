@@ -5,14 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DataBinding"
         mc:Ignorable="d"
-        Title="Окно приема пациентов" Height="600" Width="900"
-        Background="{DynamicResource AppBackground}">
+        Title="Окно приема пациентов"
+        Style="{StaticResource Wind}">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Настройки">
                 <MenuItem Header="Сменить тему" Click="ChangeTheme_Click"/>
             </MenuItem>
         </Menu>
+
+        <StatusBar DockPanel.Dock="Bottom" Background="{DynamicResource ButtonBackground}">
+            <StatusBarItem>
+                <TextBlock Text="Докторов:" Foreground="{DynamicResource AppForeground}"/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Text="{Binding DoctorsCount, Mode=OneWay}" Foreground="{DynamicResource AppForeground}"/>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock Text="Пациентов:" Foreground="{DynamicResource AppForeground}"/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Text="{Binding PatientsCount, Mode=OneWay}" Foreground="{DynamicResource AppForeground}"/>
+            </StatusBarItem>
+        </StatusBar>
 
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </DockPanel>

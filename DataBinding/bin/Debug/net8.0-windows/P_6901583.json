@@ -1,0 +1,15 @@
+﻿{
+  "LastName": "йцукей",
+  "Name": "йцукен",
+  "MiddleName": "йцукен",
+  "Birthday": "21.12.2006",
+  "PhoneNumber": "342345234",
+  "AppointmentStories": [
+    {
+      "Date": "04.12.2025",
+      "DoctorId": 23352,
+      "Diagnosis": "Лень",
+      "Recommendations": "Не лениться"
+    }
+  ]
+}

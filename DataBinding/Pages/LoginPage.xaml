@@ -9,10 +9,12 @@
     <StackPanel Style="{StaticResource CenteredStackPanel}">
         <TextBlock Text="Вход в систему" Style="{StaticResource PageTitleTextBlock}"/>
         <Label Content="ID доктора"/>
-        <TextBox Text="{Binding LoginDoctorId, Mode=TwoWay}" Foreground="Red"/>
+        <TextBox Text="{Binding LoginDoctorId, Mode=TwoWay}"/>
         <Label Content="Пароль"/>
         <PasswordBox x:Name="loginPassword"/>
-        <Button Content="Войти" Click="LoginButton_Click"/>
-        <Button Content="Регистрация" Click="RegisterButton_Click"/>
+        <WrapPanel>
+            <Button Content="Войти" Style="{StaticResource AddButton}" Click="LoginButton_Click"/>
+            <Button Content="Регистрация" Click="RegisterButton_Click"/>
+        </WrapPanel>
     </StackPanel>
 </Page>

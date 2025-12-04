@@ -5,25 +5,23 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       Title="EditPatientPage">
-    <Grid>
-        <StackPanel>
-            <TextBlock Text="Изменение пациента" Style="{StaticResource SubHeaderTextBlock}"/>
-            <WrapPanel Style="{StaticResource VerticalWrapPanel}">
-                <TextBlock Text="ID пациента:"/>
-                <TextBlock Text="{Binding CurrentPatient.Id}"/>
-                <Label Content="Фамилия"/>
-                <TextBox Style="{StaticResource TextBox180}" Text="{Binding CurrentPatient.LastName, Mode=TwoWay}"/>
-                <Label Content="Имя"/>
-                <TextBox Style="{StaticResource TextBox180}" Text="{Binding CurrentPatient.Name, Mode=TwoWay}"/>
-                <Label Content="Отчество"/>
-                <TextBox Style="{StaticResource TextBox180}" Text="{Binding CurrentPatient.MiddleName, Mode=TwoWay}"/>
-                <Label Content="Дата рождения"/>
-                <DatePicker Style="{StaticResource DatePicker180}" SelectedDate="{Binding BirthDate, Mode=TwoWay}"/>
-                <Label Content="Контактный телефон"/>
-                <TextBox Style="{StaticResource TextBox180}" Text="{Binding CurrentPatient.PhoneNumber, Mode=TwoWay}"/>
-                <Button Click="SaveButton_Click" Content="Сохранить изменения" Style="{StaticResource Button220}"/>
-            </WrapPanel>
-            <Button Click="BackButton_Click" Content="Назад" Style="{StaticResource Button100}"/>
-        </StackPanel>
-    </Grid>
+    <StackPanel Style="{StaticResource CenteredStackPanel}">
+        <TextBlock Text="Изменение пациента" Style="{StaticResource PageTitleTextBlock}"/>
+        <TextBlock Text="ID пациента:"/>
+            <TextBlock Text="{Binding CurrentPatient.Id}"/>
+            <Label Content="Фамилия"/>
+            <TextBox Text="{Binding CurrentPatient.LastName, Mode=TwoWay}"/>
+            <Label Content="Имя"/>
+            <TextBox Text="{Binding CurrentPatient.Name, Mode=TwoWay}"/>
+            <Label Content="Отчество"/>
+            <TextBox Text="{Binding CurrentPatient.MiddleName, Mode=TwoWay}"/>
+            <Label Content="Дата рождения"/>
+            <TextBox Text="{Binding Birthday, Mode=TwoWay}"/>
+            <Label Content="Контактный телефон"/>
+            <TextBox Text="{Binding CurrentPatient.PhoneNumber, Mode=TwoWay}"/>
+        <WrapPanel>
+            <Button Style="{StaticResource AddButton}" Content="Сохранить изменения" Click="SaveButton_Click"/>
+            <Button Content="Назад" Click="BackButton_Click"/>
+        </WrapPanel>
+    </StackPanel>
 </Page>

@@ -19,7 +19,9 @@
         <PasswordBox x:Name="PasswordBox"/>
         <Label Content="Подтверждение пароля"/>
         <PasswordBox x:Name="ConfirmPasswordBox"/>
-        <Button Content="Зарегистрироваться" Click="RegisterButton_Click" Style="{StaticResource Button220}"/>
-        <Button Content="Назад" Click="BackButton_Click"/>
+        <WrapPanel>
+            <Button Content="Зарегистрироваться" Click="RegisterButton_Click" Style="{StaticResource AddButton}"/>
+            <Button Content="Назад" Click="BackButton_Click"/>
+        </WrapPanel>
     </StackPanel>
 </Page>

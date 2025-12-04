@@ -6,7 +6,7 @@
       mc:Ignorable="d" 
       Title="CreatePatientPage">
     <StackPanel Style="{StaticResource CenteredStackPanel}">
-        <TextBlock Text="Создание пациента" Style="{StaticResource FormTitleTextBlock}"/>
+        <TextBlock Text="Создание пациента" Style="{StaticResource PageTitleTextBlock}"/>
         <Label Content="Фамилия"/>
         <TextBox x:Name="LastNameTextBox"/>
         <Label Content="Имя"/>
@@ -14,10 +14,12 @@
         <Label Content="Отчество"/>
         <TextBox x:Name="MiddleNameTextBox"/>
         <Label Content="Дата рождения"/>
-        <DatePicker x:Name="BirthDatePicker"/>
+        <TextBox x:Name="BirthDatePicker"/>
         <Label Content="Контактный телефон"/>
         <TextBox x:Name="PhoneTextBox"/>
-        <Button Content="Сохранить" Click="SaveButton_Click"/>
-        <Button Content="Назад" Click="BackButton_Click"/>
+        <WrapPanel>
+            <Button Style="{StaticResource AddButton}" Content="Сохранить" Click="SaveButton_Click"/>
+            <Button Content="Назад" Click="BackButton_Click"/>
+        </WrapPanel>
     </StackPanel>
 </Page>

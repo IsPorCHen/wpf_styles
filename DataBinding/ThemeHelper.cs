@@ -41,7 +41,7 @@ namespace DataBinding
             }
             else
             {
-                Application.Current.Resources.MergedDictionaries.Insert(0, newTheme); // ВСТАВЬ В НАЧАЛО
+                Application.Current.Resources.MergedDictionaries.Insert(0, newTheme);
             }
 
             Current = themePath;

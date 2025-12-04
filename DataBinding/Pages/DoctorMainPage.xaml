@@ -11,18 +11,19 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Style="{StaticResource HorizontalStackPanel}">
+        <WrapPanel Grid.Row="0">
             <TextBlock Text="Главный экран доктора" Style="{StaticResource SectionHeaderTextBlock}"/>
             <TextBlock Text="{Binding CurrentDoctor.Name}"/>
             <TextBlock Text="{Binding CurrentDoctor.LastName}"/>
             <Button Content="Выйти" Click="LogoutButton_Click"/>
-        </StackPanel>
+        </WrapPanel>
 
         <StackPanel Grid.Row="1">
             <StackPanel Style="{StaticResource ActionButtonsStackPanel}">
-                <Button Style="{StaticResource AddButton}" Click="CreatePatientButton_Click"/>
-                <Button Content="Начать прием" Click="StartAppointmentButton_Click" Style="{StaticResource Button180}"/>
-                <Button Content="Изменить информацию" Click="EditInfoButton_Click" Style="{StaticResource Button200}"/>
+                <Button Style="{StaticResource AddButton}" Content="Добавить пациента" Click="CreatePatientButton_Click"/>
+                <Button Content="Начать прием" Click="StartAppointmentButton_Click"/>
+                <Button Content="Изменить информацию" Click="EditInfoButton_Click"/>
+                <Button Style="{StaticResource DeleteButton}" Content="Удалить пациента" Click="DeleteButton_Click"/>
             </StackPanel>
 
             <TextBlock Text="Список пациентов:" Style="{StaticResource SubHeaderTextBlock}"/>

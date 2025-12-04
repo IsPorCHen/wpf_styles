@@ -21,74 +21,60 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="DeleteButton" TargetType="Button">
+    <Style x:Key="DeleteButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="Background" Value="{DynamicResource DeleteButtonBackground}"/>
-        <Setter Property="Foreground" Value="{DynamicResource DeleteButtonForeground}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource DeleteButtonBorder}"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="Padding" Value="20,5"/>
-        <Setter Property="Margin" Value="5"/>
-        <Setter Property="Height" Value="35"/>
-        <Setter Property="MinWidth" Value="150"/>
-        <Setter Property="Content" Value="🗑 Удалить"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource DeleteButtonBackground}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background ="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentPresenter Content="{TemplateBinding Content}" Margin="5,0,5,0" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                            <TextBlock Text="🗑️" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{DynamicResource DeleteButtonHover}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource DeleteButtonHover}"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="Background" Value="{DynamicResource DeleteButtonPressed}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource DeleteButtonPressed}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="AddButton" TargetType="Button">
+    <Style x:Key="AddButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="Background" Value="{DynamicResource AddButtonBackground}"/>
-        <Setter Property="Foreground" Value="{DynamicResource AddButtonForeground}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource AddButtonBorder}"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="Padding" Value="20,5"/>
-        <Setter Property="Margin" Value="5"/>
-        <Setter Property="Height" Value="35"/>
-        <Setter Property="MinWidth" Value="150"/>
-        <Setter Property="Content" Value="+ Добавить"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource AddButtonBackground}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background ="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentPresenter Content="{TemplateBinding Content}" Margin="5,0,5,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Text="+" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{DynamicResource AddButtonHover}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource AddButtonHover}"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="Background" Value="{DynamicResource AddButtonPressed}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource AddButtonPressed}"/>
             </Trigger>
         </Style.Triggers>
-    </Style>
-
-    <Style x:Key="Button100" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-        <Setter Property="Width" Value="100"/>
-    </Style>
-
-    <Style x:Key="Button120" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-        <Setter Property="Width" Value="120"/>
-    </Style>
-
-    <Style x:Key="Button140" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-        <Setter Property="Width" Value="140"/>
-    </Style>
-
-    <Style x:Key="Button160" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-        <Setter Property="Width" Value="160"/>
-    </Style>
-
-    <Style x:Key="Button180" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-        <Setter Property="Width" Value="180"/>
-    </Style>
-
-    <Style x:Key="Button200" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-        <Setter Property="Width" Value="200"/>
-    </Style>
-
-    <Style x:Key="Button220" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-        <Setter Property="Width" Value="220"/>
     </Style>
 
 </ResourceDictionary>
